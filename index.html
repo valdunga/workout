@@ -64,6 +64,14 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .day .d{font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:.03em}
 .day .t{grid-column:2;color:var(--muted);font-size:14px;min-width:0}
 .day .t b{color:var(--ink);font-weight:600}
+.day .d{cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.day .d .s{font-family:var(--body);font-size:13px;text-transform:none;letter-spacing:0;color:var(--muted)}
+ul.ex{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:0}
+ul.ex li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:4px 14px;padding:7px 0;border-top:1px solid var(--line)}
+ul.ex li:first-child{border-top:0}
+ul.ex .n{color:var(--ink);font-weight:500}
+ul.ex .q{color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:640px){ul.ex li{grid-template-columns:1fr;gap:0}}
 .day.done{opacity:.6}
 .day.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -116,6 +124,7 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--a
     <button type="button" data-phase="3">Fase 3</button>
   </div>
   <p class="muted" id="phaseHint"></p>
+  <div class="note"><b>Cómo leer las dosis:</b> “3 × 8–12 · 90 s” = 3 series de 8 a 12 repeticiones, con 90 s de descanso entre series. “Máximo − 2” = paras 2 repeticiones antes de no poder más. Termina cada serie con 2 repeticiones en el estanque. Los kilos están en <a href="#pesos">Pesos</a>. Si el día amanece amarillo, cambia el bloque del tendón por 5 × 45 s aguantando a media puntilla con las dos piernas.</div>
   <div class="week" id="week"></div>
   <div class="row"><button type="button" id="resetWeek">Empezar semana nueva</button><span class="muted" style="font-size:13px">Marca cada día al terminarlo. Las marcas quedan guardadas en este dispositivo.</span></div>
   <div class="box">
@@ -350,39 +359,48 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--a
   };
   function a(k,txt){var x=L[k];return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+(txt||x[0])+'</a>';}
   function d(name,url){return '<a href="'+url+'" target="_blank" rel="noopener">'+name+'</a>';}
-  var tendon='Al final, tendón: '+a('pSent')+', '+a('pPie')+' y '+a('bajada')+'.';
-
+  var AR=d("Ankle Recovery","https://darebee.com/workouts/ankle-recovery-workout.html");
+  var IH=d("Ironheart","https://darebee.com/programs/ironheart-program.html");
+  var PU=d("Power-Up","https://darebee.com/programs/power-up.html");
+  // Bloque del tendón por fase
+  var T1=[[a('pSent'),'3 × 15 · lento (2 s sube, 2 s baja) · 60 s'],[a('pPie','Puntillas de pie'),'3 × 15 con las dos piernas; cuando sea fácil, 3 × 8–15 con una pierna · 60 s'],[a('bajada','Bajada lenta en escalón'),'3 × 10–15 · 3 s bajando · 60 s']];
+  var T2=[[a('pSent'),'3 × 15 con 10 kg · 60 s'],[a('pPie','Puntillas de pie a una pierna'),'3 × 10–15 por pierna con mancuerna · 60 s'],[a('bajada','Bajada lenta en escalón'),'3 × 12–15 con mancuerna · 3 s bajando · 60 s']];
+  var calent=['Calentamiento','5 min: bombeos de tobillo, círculos de cadera y brazos, 15 puntillas con las dos piernas'];
   var F1=[
-    ["Lunes","Fuerza tren superior + tendón",a('remoInc')+', flexiones, '+a('press')+', '+a('remo1')+', '+a('curl')+', plancha. '+tendon,d("Beginner Dumbbells","https://darebee.com/workouts/beginner-dumbbells-workout.html")+" (alternativa)"],
-    ["Martes","Box suave + caminata","6 rounds de 2 min al punching ball, 1 min de descanso, pies plantados ("+a('golpes')+"). Después 20–30 min de caminata.",d("Punchy","https://darebee.com/workouts/punchy-workout.html")+" (nivel 1)"],
-    ["Miércoles","Piernas + core + tendón",a('puente')+', '+a('goblet')+', '+a('rdl')+' (pies planos), '+a('legs')+', '+a('dead')+'. '+tendon,"—"],
-    ["Jueves","Caminata + tobillo","30–40 min de caminata a paso firme. Después el workout de tobillo.",d("Ankle Recovery","https://darebee.com/workouts/ankle-recovery-workout.html")],
-    ["Viernes","Fuerza cuerpo completo + tendón",a('fondos')+', '+a('remo1')+', '+a('goblet')+', '+a('floor')+', '+a('curl')+', '+a('lateral')+'. '+tendon,"—"],
-    ["Sábado","Box técnico + caminata","6–8 rounds de 2 min de técnica ("+a('golpes','jab, recto, gancho')+"), pies plantados. Después caminata.",d("Bag Work","https://darebee.com/workouts/bag-work-workout.html")],
-    ["Domingo","Descanso activo","Caminata suave o nada.","—"]
+    {d:"Lunes",s:"Fuerza tren superior + tendón",min:"50 min",ex:[calent,[a('remoInc'),'3 × 8–12 · 90 s'],['Flexiones','3 × (máximo − 2) · 90 s'],[a('press','Press de hombros sentado'),'3 × 8–12 · 90 s'],[a('remo1','Remo a una mano'),'3 × 8–12 por lado · 60 s'],[a('curl','Curl de bíceps'),'2 × 10–12 · 60 s'],['Plancha','3 × 30–45 s · 45 s']].concat(T1),db:d("Beginner Dumbbells","https://darebee.com/workouts/beginner-dumbbells-workout.html")+" (alternativa)"},
+    {d:"Martes",s:"Box suave + caminata",min:"45 min",ex:[calent,['Punching ball, pies plantados ('+a('golpes')+')','6 rounds de 2 min · 1 min de descanso'],['Caminata','20–30 min a paso firme']],db:d("Punchy","https://darebee.com/workouts/punchy-workout.html")+" (nivel 1)"},
+    {d:"Miércoles",s:"Piernas + core + tendón",min:"50 min",ex:[calent,[a('puente','Puente de glúteo'),'3 × 12–15 · 60 s'],[a('goblet','Sentadilla goblet a cajón'),'3 × 8–12 · 90 s'],[a('rdl','Peso muerto rumano'),'3 × 8–12, pies planos · 90 s'],[a('legs','Elevaciones de piernas en el suelo'),'3 × 10–12 · 60 s'],[a('dead','Dead bug'),'3 × 8 por lado · 45 s']].concat(T1),db:"—"},
+    {d:"Jueves",s:"Caminata + tobillo",min:"50 min",ex:[['Caminata','30–40 min a paso firme'],[AR,'1 vuelta, como indica la tarjeta']],db:AR},
+    {d:"Viernes",s:"Fuerza cuerpo completo + tendón",min:"55 min",ex:[calent,[a('fondos'),'3 × (máximo − 2) · 90 s'],[a('remo1','Remo a una mano'),'3 × 8–12 por lado · 60 s'],[a('goblet','Sentadilla goblet a cajón'),'3 × 8–12 · 90 s'],[a('floor','Press de pecho en el suelo'),'3 × 8–12 · 90 s'],[a('curl','Curl de bíceps'),'2 × 10–12 · 60 s'],[a('lateral','Plancha lateral'),'3 × 20–30 s por lado · 45 s']].concat(T1),db:"—"},
+    {d:"Sábado",s:"Box técnico + caminata",min:"50 min",ex:[calent,['Punching ball, técnica ('+a('golpes','jab, recto, gancho')+')','6–8 rounds de 2 min · 1 min de descanso'],['Caminata','20–30 min']],db:d("Bag Work","https://darebee.com/workouts/bag-work-workout.html")},
+    {d:"Domingo",s:"Descanso activo",min:"",ex:[['Caminata suave','Opcional, 20–30 min']],db:"—"}
   ];
+  var calis2=[['Flexiones (normales, diamante o pies sobre una silla)','3 × (máximo − 2) · 90 s'],[a('fondos'),'3 × (máximo − 2) · 90 s']];
   var F2=[
-    ["Lunes","Ironheart (día del programa) + flexiones y fondos + tendón con peso"],
-    ["Martes","Box 8–10 rounds de 2 min + caminata"],
-    ["Miércoles","Ironheart (día del programa) + tendón con peso"],
-    ["Jueves","Caminata 40–60 min + "+d("Ankle Recovery","https://darebee.com/workouts/ankle-recovery-workout.html")],
-    ["Viernes","Ironheart (día del programa) + flexiones y fondos + tendón con peso"],
-    ["Sábado","Box 8–10 rounds de 2 min + caminata"],
-    ["Domingo","Descanso activo"]
+    {d:"Lunes",s:"Ironheart + calistenia + tendón",min:"60 min",ex:[calent,[IH+' (día que toque)','Series y repeticiones como indica la tarjeta del día']].concat(calis2,T2)},
+    {d:"Martes",s:"Box + caminata",min:"55 min",ex:[calent,['Punching ball','8–10 rounds de 2 min · 1 min de descanso'],['Caminata','30 min']]},
+    {d:"Miércoles",s:"Ironheart + tendón",min:"50 min",ex:[calent,[IH+' (día que toque)','Como indica la tarjeta del día']].concat(T2)},
+    {d:"Jueves",s:"Caminata + tobillo",min:"60 min",ex:[['Caminata','40–60 min'],[AR,'1 vuelta, como indica la tarjeta']]},
+    {d:"Viernes",s:"Ironheart + calistenia + tendón",min:"60 min",ex:[calent,[IH+' (día que toque)','Como indica la tarjeta del día']].concat(calis2,T2)},
+    {d:"Sábado",s:"Box + caminata",min:"55 min",ex:[calent,['Punching ball','8–10 rounds de 2 min · 1 min de descanso'],['Caminata','30 min']]},
+    {d:"Domingo",s:"Descanso activo",min:"",ex:[['Caminata suave','Opcional']]}
   ];
+  var impacto=['Etapa de impacto de la semana','Sem 9: cuerda suave 3 × 1 min · Sem 10: jumping jacks 3 × 20 y sentadilla con salto pequeño 3 × 8 · Sem 11: saltitos en una pierna 2 × 10 por dirección y zancadas caminando 3 × 10 por pierna · Sem 12: burpees 3 × 8 (primero sin salto), saltos al cajón 3 × 5, pistol asistido 3 × 5 por pierna. Descanso 90 s'];
+  var pesas3=[[a('remoInc'),'3 × 8–12 · 90 s'],[a('goblet','Sentadilla goblet'),'3 × 8–12 · 90 s'],[a('floor','Press de pecho en el suelo'),'3 × 8–12 · 90 s'],[a('rdl','Peso muerto rumano'),'3 × 8–12 · 90 s'],[a('press','Press de hombros sentado'),'3 × 8–12 · 90 s']];
   var F3=[
-    ["Lunes","Power-Up (día del programa) + etapa de impacto de la semana"],
-    ["Martes","Pesas (sesión de Ironheart que prefieras) + tendón"],
-    ["Miércoles","Power-Up + box con rebote suave"],
-    ["Jueves","Caminata o trote según la etapa"],
-    ["Viernes","Pesas + etapa de impacto de la semana + tendón"],
-    ["Sábado","Power-Up + box"],
-    ["Domingo","Descanso activo"]
+    {d:"Lunes",s:"Power-Up + impacto",min:"45 min",ex:[calent,[PU+' (día que toque)','Por tiempo, como indica la tarjeta'],impacto]},
+    {d:"Martes",s:"Pesas + tendón",min:"55 min",ex:[calent].concat(pesas3,T2)},
+    {d:"Miércoles",s:"Power-Up + box",min:"55 min",ex:[calent,[PU+' (día que toque)','Como indica la tarjeta'],['Punching ball con rebote suave','8 rounds de 2 min · 1 min de descanso']]},
+    {d:"Jueves",s:"Caminata o trote",min:"40 min",ex:[['Sem 9–10: caminata','45 min'],['Sem 11–12: trote','10–20 min alternando 1 min trotando y 1 min caminando']]},
+    {d:"Viernes",s:"Pesas + impacto + tendón",min:"60 min",ex:[calent].concat(pesas3,[impacto],T2)},
+    {d:"Sábado",s:"Power-Up + box",min:"55 min",ex:[calent,[PU+' (día que toque)','Como indica la tarjeta'],['Punching ball','8 rounds de 2 min · 1 min de descanso']]},
+    {d:"Domingo",s:"Descanso activo",min:"",ex:[['Caminata suave','Opcional']]}
   ];
+  function exList(ex){return '<ul class="ex">'+ex.map(function(e){return '<li><span class="n">'+e[0]+'</span><span class="q">'+e[1]+'</span></li>';}).join('')+'</ul>';}
 
   // Tabla Fase 1
   document.getElementById('f1rows').innerHTML=F1.map(function(r){
-    return '<tr><td data-l="Día"><b>'+r[0]+'</b></td><td data-l="Sesión">'+r[1]+'</td><td data-l="Qué hacer">'+r[2]+'</td><td data-l="DAREBEE">'+r[3]+'</td></tr>';
+    return '<tr><td data-l="Día"><b>'+r.d+'</b><br><span class="muted">'+r.min+'</span></td><td data-l="Sesión">'+r.s+'</td><td data-l="Qué hacer">'+exList(r.ex)+'</td><td data-l="DAREBEE">'+r.db+'</td></tr>';
   }).join('');
 
   // Pesos
@@ -446,12 +464,12 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--a
   var hints={1:"Fase 1: fuerza sin impacto. Detalle en la pestaña Fase 1.",2:"Fase 2: Ironheart + box. Detalle en la pestaña Fase 2.",3:"Fase 3: Power-Up + impacto gradual. Detalle en la pestaña Fase 3."};
   var todayIdx=(new Date().getDay()+6)%7;
   function renderWeek(){
-    var rows=phase===1?F1.map(function(r){return [r[0],r[1]+' — '+r[2]];}):(phase===2?F2:F3);
+    var rows=phase===1?F1:(phase===2?F2:F3);
     document.getElementById('phaseHint').textContent=hints[phase];
     document.querySelectorAll('[data-phase]').forEach(function(b){b.className=(+b.dataset.phase===phase)?'primary':'';});
     document.getElementById('week').innerHTML=rows.map(function(r,i){
       var id='d'+phase+'-'+i, on=!!done[id];
-      return '<label class="day'+(on?' done':'')+(i===todayIdx?' today':'')+'" for="'+id+'"><input type="checkbox" id="'+id+'"'+(on?' checked':'')+'><span class="d">'+r[0]+(i===todayIdx?' · hoy':'')+'</span><span class="t">'+r[1]+'</span></label>';
+      return '<div class="day'+(on?' done':'')+(i===todayIdx?' today':'')+'"><input type="checkbox" id="'+id+'"'+(on?' checked':'')+'><label class="d" for="'+id+'">'+r.d+(i===todayIdx?' · hoy':'')+'<span class="s">'+r.s+(r.min?' · '+r.min:'')+'</span></label><div class="t">'+exList(r.ex)+'</div></div>';
     }).join('');
     document.querySelectorAll('#week input').forEach(function(c){c.addEventListener('change',function(){done[c.id]=c.checked;set('pr-done',done);c.parentNode.classList.toggle('done',c.checked);});});
   }
