@@ -1,0 +1,495 @@
+<title>Plan de Regreso</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: app de bolsillo — barra de pestañas fija arriba, una sección a la vez, tablas que se vuelven tarjetas en el celular */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#18222d; --muted:#5b6876; --line:#d9dfe5;
+  --accent:#1f6f8b; --accent-ink:#ffffff; --accent-soft:#e1eef3;
+  --green:#2f8a4e; --green-soft:#e3f3e8; --amber:#b9770e; --amber-soft:#fbf0dc; --red:#c0392b; --red-soft:#f9e3e0;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11171d; --surface:#1a222b; --ink:#e7ecf0; --muted:#9aa7b4; --line:#2c3743;
+  --accent:#5fb3cf; --accent-ink:#0d1418; --accent-soft:#1d3440;
+  --green:#5cc47e; --green-soft:#1c3324; --amber:#e3a84a; --amber-soft:#3a2d17; --red:#ef7b6d; --red-soft:#3d201d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11171d; --surface:#1a222b; --ink:#e7ecf0; --muted:#9aa7b4; --line:#2c3743;
+  --accent:#5fb3cf; --accent-ink:#0d1418; --accent-soft:#1d3440;
+  --green:#5cc47e; --green-soft:#1c3324; --amber:#e3a84a; --amber-soft:#3a2d17; --red:#ef7b6d; --red-soft:#3d201d; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-block:12px 4px}
+.brand h1{font-family:var(--display);font-size:26px;letter-spacing:.02em;margin:0;text-transform:uppercase}
+.brand span{color:var(--muted);font-size:12px}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding-block:8px 10px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+main{padding-block:20px 120px}
+section{display:grid;gap:16px}
+h2{font-family:var(--display);font-size:30px;line-height:1.1;margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+h3{font-family:var(--display);font-size:20px;margin:8px 0 0;text-transform:uppercase;letter-spacing:.03em}
+p{margin:0;max-width:68ch}
+.lead{font-size:16px}
+.muted{color:var(--muted)}
+ul,ol{margin:0;padding-left:20px;display:grid;gap:6px;max-width:68ch}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
+.note{background:var(--accent-soft);border-radius:10px;padding:12px 14px}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+/* tablas responsivas */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:640px){
+  table.cards,table.cards tbody,table.cards tr,table.cards td{display:block;width:100%}
+  table.cards thead{display:none}
+  table.cards{border:0;background:none}
+  table.cards tr{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 0}
+  table.cards td{border:0;padding:4px 14px}
+  table.cards td::before{content:attr(data-l);display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+}
+/* semana */
+.week{display:grid;gap:10px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start}
+.day input{width:22px;height:22px;margin-top:3px;accent-color:var(--green)}
+.day .d{font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:.03em}
+.day .t{grid-column:2;color:var(--muted);font-size:14px;min-width:0}
+.day .t b{color:var(--ink);font-weight:600}
+.day.done{opacity:.6}
+.day.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:inherit;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+/* semáforo */
+.lights{display:grid;gap:10px}
+.light{border-radius:10px;padding:12px 14px;display:grid;gap:4px;border-left:6px solid}
+.light.g{background:var(--green-soft);border-color:var(--green)}
+.light.a{background:var(--amber-soft);border-color:var(--amber)}
+.light.r{background:var(--red-soft);border-color:var(--red)}
+.light strong{font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:.04em}
+.crit{display:grid;gap:12px}
+.crit .box ol{gap:8px}
+/* timer */
+.timer{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:max(10px,env(safe-area-inset-bottom,0px));padding-top:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.timer .in{max-width:860px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.clock{font-family:var(--display);font-size:32px;font-variant-numeric:tabular-nums;min-width:4.2ch}
+.clock.end{color:var(--green)}
+@media (prefers-reduced-motion:no-preference){.clock.end{animation:pulse 1s ease-in-out 3}}
+@keyframes pulse{50%{opacity:.35}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><h1>Plan de regreso</h1><span>12 semanas · tendón · box · calistenia</span></div>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#hoy">Mi semana</a>
+      <a href="#reglas">Reglas</a>
+      <a href="#fase1">Fase 1</a>
+      <a href="#fase2">Fase 2</a>
+      <a href="#fase3">Fase 3</a>
+      <a href="#pesos">Pesos</a>
+      <a href="#criterios">Criterios</a>
+      <a href="#nutricion">Nutrición</a>
+      <a href="#glosario">Glosario</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- MI SEMANA -->
+<section id="v-hoy" data-view="hoy">
+  <h2>Mi semana</h2>
+  <div class="row">
+    <span class="muted">Estoy en:</span>
+    <button type="button" data-phase="1">Fase 1</button>
+    <button type="button" data-phase="2">Fase 2</button>
+    <button type="button" data-phase="3">Fase 3</button>
+  </div>
+  <p class="muted" id="phaseHint"></p>
+  <div class="week" id="week"></div>
+  <div class="row"><button type="button" id="resetWeek">Empezar semana nueva</button><span class="muted" style="font-size:13px">Marca cada día al terminarlo. Las marcas quedan guardadas en este dispositivo.</span></div>
+  <div class="box">
+    <strong>Antes de cada sesión</strong>
+    <p>Prueba de la mañana: al levantarte, 10 pasos y una puntilla con las dos piernas. Ponle nota de 0 a 10 al dolor y revisa el <a href="#criterios">semáforo</a>.</p>
+  </div>
+</section>
+
+<!-- REGLAS -->
+<section id="v-reglas" data-view="reglas" hidden>
+  <h2>Reglas para no volver a lesionar el tendón</h2>
+  <p class="lead">El peso se baja sobre todo con la comida; el ejercicio sirve para conservar y ganar músculo. No necesitas saltar ni correr para adelgazar, y cada kilo que bajas es carga que el Aquiles deja de recibir en cada paso.</p>
+  <ol>
+    <li><b>Nada de impacto hasta pasar la prueba de las 25 puntillas</b> con la pierna lesionada. Eso incluye saltar la cuerda, burpees, jumping jacks y trotar.</li>
+    <li><b>Escala del dolor de 0 a 10.</b> Durante el ejercicio se acepta hasta 2 (verde). A la mañana siguiente debe estar igual o mejor. Detalle en el <a href="#criterios">semáforo</a>.</li>
+    <li><b>Ejercicios del tendón 3 veces por semana</b>: puntillas sentado, puntillas de pie y bajada lenta en escalón. No se saltan.</li>
+    <li><b>Box con los pies plantados.</b> Golpea girando cadera y pie, sin saltitos ni rebotes en puntillas. El rebote vuelve en la Fase 3.</li>
+    <li><b>Entrena con zapatillas</b>, no descalzo ni en calcetines (salvo la prueba de puntillas).</li>
+    <li><b>Calienta 5 minutos:</b> bombeos de tobillo, círculos de cadera y brazos, y 15 puntillas con las dos piernas.</li>
+    <li><b>Avanzas de fase por criterios, no por calendario.</b> Las semanas son una guía.</li>
+  </ol>
+  <div class="note"><b>Tu semana tipo:</b> 3 días de fuerza con mancuernas y peso corporal, 2 días de box y caminata diaria. Empieza con 20–30 minutos y sube hasta 8.000–10.000 pasos al día.</div>
+</section>
+
+<!-- FASE 1 -->
+<section id="v-fase1" data-view="fase1" hidden>
+  <span class="chip">Semanas 1–4</span>
+  <h2>Fase 1: fuerza sin impacto</h2>
+  <p>Objetivo: entrenar 5 días por semana sin que el tendón se queje. Haz 3 series de 8–12 repeticiones dejando 2 “en el estanque”. Los kilos de cada ejercicio están en <a href="#pesos">Pesos</a>.</p>
+  <div class="tbl"><table class="cards">
+    <thead><tr><th>Día</th><th>Sesión</th><th>Qué hacer</th><th>DAREBEE</th></tr></thead>
+    <tbody id="f1rows"></tbody>
+  </table></div>
+  <p class="muted">Sin barras: los ejercicios de tracción son con mancuernas. Si un workout de DAREBEE pide barra, cambia las dominadas por remo con mancuernas; si trae saltos, usa la versión sin salto (<a href="https://www.darebee.com/challenges/easy-cardio-challenge.html" target="_blank" rel="noopener">step jacks</a>). Los fondos en silla, en una silla firme apoyada contra la pared.</p>
+</section>
+
+<!-- FASE 2 -->
+<section id="v-fase2" data-view="fase2" hidden>
+  <span class="chip">Semanas 5–8</span>
+  <h2>Fase 2: programa de pesas + box</h2>
+  <p>Objetivo: ganar músculo con un programa estructurado y subir el gasto de calorías con más box. Entras cuando cumples los <a href="#criterios">criterios de la Fase 1</a>.</p>
+  <div class="box">
+    <strong>Programa principal: <a href="https://darebee.com/programs/ironheart-program.html" target="_blank" rel="noopener">Ironheart</a> (30 días, mancuernas)</strong>
+    <p>Alterna días de tren superior y tren inferior con días de recuperación. Usa mancuernas con las que hagas justo 12 curls (tu peso de curl de ese momento). Un día del programa por día de la semana; en los días de recuperación, box o caminata.</p>
+    <p class="muted">Alternativa: <a href="https://darebee.com/programs/hard-reset-strength.html" target="_blank" rel="noopener">Hard Reset Strength</a>, para ganar músculo y fortalecer tendones con circuitos.</p>
+  </div>
+  <h3>Lo que se suma a la semana</h3>
+  <ul>
+    <li><b>Calistenia de tren superior 2 veces por semana</b>, al final de las sesiones de tren superior: flexiones (normales, diamante y con los pies sobre una silla) y <a href="https://strengthlog.com/bench-dip" target="_blank" rel="noopener">fondos en silla</a>, 3 series al máximo menos 2.</li>
+    <li><b>Box 2 veces por semana</b>, 8–10 rounds de 2 min. Pasos cortos laterales y adelante-atrás, sin rebotar. Opción: <a href="https://darebee.com/workouts/boxing-endurance-drills-workout.html" target="_blank" rel="noopener">Boxing Endurance Drills</a>.</li>
+    <li><b>Tendón 3 veces por semana</b>, ahora con peso: puntillas de pie con una pierna y bajada lenta en escalón con una mancuerna.</li>
+    <li><b>Caminata diaria</b>, 8.000–10.000 pasos.</li>
+  </ul>
+  <p class="muted">En Ironheart las zancadas y sentadillas están permitidas: baja solo hasta donde el tobillo no tire. Si un día trae saltos, cámbialos por la misma cantidad de sentadillas goblet.</p>
+</section>
+
+<!-- FASE 3 -->
+<section id="v-fase3" data-view="fase3" hidden>
+  <span class="chip">Semanas 9–12</span>
+  <h2>Fase 3: vuelta a la calistenia completa</h2>
+  <p>Objetivo: reintroducir el impacto de a poco. Entras cuando cumples los <a href="#criterios">criterios de la Fase 2</a>.</p>
+  <div class="box">
+    <strong>Programa principal: <a href="https://darebee.com/programs/power-up.html" target="_blank" rel="noopener">Power-Up</a> (30 días, peso corporal)</strong>
+    <p>De bajo impacto y enfocado en tendones: el puente entre la rehab y la calistenia normal. Mantén 2 sesiones de pesas por semana y 2 de box.</p>
+  </div>
+  <h3>Impacto, una etapa por semana</h3>
+  <ol>
+    <li><b>Semana 9:</b> saltar la cuerda suave con los dos pies, 3 × 1 min, 2 veces por semana. En el box ya puedes rebotar suave.</li>
+    <li><b>Semana 10:</b> jumping jacks y sentadilla con salto pequeño, aterrizando suave.</li>
+    <li><b>Semana 11:</b> saltitos en una pierna (adelante, atrás, lados) y zancadas caminando. Trote de 10 min: 1 min trotando, 1 min caminando.</li>
+    <li><b>Semana 12:</b> burpees (primero sin el salto final), saltos al cajón subiendo y bajando caminando, pistol squat asistido.</li>
+  </ol>
+  <p>Una etapa se queda solo si la mañana siguiente es verde. Si es roja, vuelves a la etapa anterior una semana.</p>
+  <p class="muted">Después de la semana 12, y si cumples los criterios finales, vuelves a los programas normales de DAREBEE o a tu calistenia militar.</p>
+</section>
+
+<!-- PESOS -->
+<section id="v-pesos" data-view="pesos" hidden>
+  <h2>Pesos de las mancuernas</h2>
+  <p class="lead">El peso correcto es el que te deja terminar cada serie con 2 repeticiones en el estanque. Los kilos son el peso total de <b>cada</b> mancuerna, con la barra incluida.</p>
+  <div class="note"><b>Tu equipo:</b> 8 discos de 1 kg y 4 de 2 kg (16 kg en total) y barras de unos 2 kg. Pésalas: si pesan distinto, todo se corre en esa diferencia. Mismo disco a cada lado y seguros apretados. Los pesos van de 2 en 2 kg: con las dos mancuernas cargadas el máximo es <b>10 kg cada una</b>; con una sola, <b>18 kg</b>.</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Mancuerna</th><th>Discos por lado</th><th>Para</th></tr></thead>
+    <tbody>
+      <tr><td class="num">4 kg</td><td>1 × 1 kg</td><td>Par o una sola</td></tr>
+      <tr><td class="num">6 kg</td><td>1 × 2 kg (o 2 × 1 kg)</td><td>Par o una sola</td></tr>
+      <tr><td class="num">8 kg</td><td>1 × 2 kg + 1 × 1 kg</td><td>Par o una sola</td></tr>
+      <tr><td class="num">10 kg</td><td>1 × 2 kg + 2 × 1 kg</td><td>Par (máximo con las dos)</td></tr>
+      <tr><td class="num">12 kg</td><td>2 × 2 kg + 1 × 1 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">14 kg</td><td>2 × 2 kg + 2 × 1 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">16 kg</td><td>2 × 2 kg + 3 × 1 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">18 kg</td><td>2 × 2 kg + 4 × 1 kg</td><td>Una sola (todos los discos)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table class="cards">
+    <thead><tr><th>Ejercicio</th><th>Mancuernas</th><th>Peso inicial (cada una)</th><th>Techo</th><th>Subes 2 kg cuando…</th></tr></thead>
+    <tbody id="wrows"></tbody>
+  </table></div>
+  <div class="box">
+    <strong>Prueba de la primera sesión</strong>
+    <p>Haz una serie con el peso de la tabla. Si podrías haber hecho más de 15, sube 2 kg. Si no llegas a 8, baja 2 kg. Anota el peso que te quedó.</p>
+  </div>
+  <div class="box">
+    <strong>Cómo progresar</strong>
+    <p>Trabaja entre 8 y 12 repeticiones e intenta sumar una cada sesión. Cuando hagas 3 × 12 con buena técnica y 2 en el estanque, sube 2 kg y vuelve a 8–10.</p>
+  </div>
+  <div class="box">
+    <strong>Cuando llegues al techo de 10 kg con dos mancuernas</strong>
+    <p>Lo más probable en peso muerto rumano, remo inclinado y press de pecho. Sigue progresando sin más peso:</p>
+    <ul>
+      <li>Pásate a la versión a un brazo o a una pierna con una sola mancuerna pesada (hasta 18 kg): remo a una mano, peso muerto rumano a una pierna, press de pecho a un brazo.</li>
+      <li>Baja en 3 segundos y pausa 1 segundo abajo.</li>
+      <li>Sube hasta 15–20 repeticiones por serie.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CRITERIOS -->
+<section id="v-criterios" data-view="criterios" hidden>
+  <h2>Criterios para avanzar</h2>
+  <p class="lead">Avanzas de fase solo cuando cumples <b>todos</b> los criterios de esa fase, aunque no hayan pasado las 4 semanas. Si no, repites la fase.</p>
+  <h3>El semáforo del dolor (0 a 10, en el tendón)</h3>
+  <div class="lights">
+    <div class="light g"><strong>Verde</strong><span>Dolor de 0 a 2 durante el ejercicio, y la mañana siguiente igual o mejor.</span><span><b>Haces:</b> sigues el plan y, si cumples los criterios, avanzas.</span></div>
+    <div class="light a"><strong>Amarillo</strong><span>Dolor de 3 a 5, o la mañana siguiente más rígido pero se pasa en menos de 30 min de caminar.</span><span><b>Haces:</b> mantienes la carga; esa semana no subes peso ni avanzas.</span></div>
+    <div class="light r"><strong>Rojo</strong><span>Dolor sobre 5, cojeas, o la rigidez de la mañana dura más de 30 min o es peor que el día anterior.</span><span><b>Haces:</b> bajas a la carga anterior (ver “Cuándo retroceder”).</span></div>
+  </div>
+  <h3>Qué debes cumplir</h3>
+  <div class="crit">
+    <div class="box"><strong>Fase 1 → Fase 2</strong><ol>
+      <li>Caminas 30 min seguidos sin cojear, con dolor de 2 o menos.</li>
+      <li>Subes y bajas 2 pisos de escalera alternando pies, con dolor de 2 o menos.</li>
+      <li>Prueba de puntillas: 15 o más con la lesionada, o al menos el 60% de la sana.</li>
+      <li>30 s parado en la pierna lesionada con ojos abiertos, sin apoyarte.</li>
+      <li>Las últimas 2 semanas, sin días rojos.</li></ol></div>
+    <div class="box"><strong>Fase 2 → Fase 3</strong><ol>
+      <li>Prueba de puntillas: 25 o más con la lesionada, o al menos el 90% de la sana, con la misma altura.</li>
+      <li>Bajada lenta en escalón: 3 × 15 con 6 kg y dolor de 2 o menos.</li>
+      <li>Caminas 60 min y la mañana siguiente es verde.</li>
+      <li>20 s parado en la pierna lesionada con ojos cerrados, igual que con la sana.</li>
+      <li>2 × 10 saltitos suaves con los dos pies, dolor de 2 o menos y mañana siguiente verde.</li></ol></div>
+    <div class="box"><strong>Fase 3 → calistenia completa</strong><ol>
+      <li>Pasaste las 4 etapas de impacto sin días rojos.</li>
+      <li>20 saltitos seguidos en la pierna lesionada, dolor de 2 o menos, igual de fluidos que con la sana.</li>
+      <li>20 min de trote continuo sin que la mañana siguiente sea peor.</li>
+      <li>3 × 10 burpees completos con mañana siguiente verde.</li></ol></div>
+  </div>
+  <h3>Prueba de puntillas, paso a paso</h3>
+  <p class="muted">Cada 2 semanas, mismo día y misma hora.</p>
+  <ol>
+    <li>Descalzo, en suelo plano, frente a una pared, con la punta de los dedos tocándola a la altura de los hombros. La pared es solo para el equilibrio.</li>
+    <li>Párate en la pierna a medir con la rodilla estirada; dobla la otra en el aire.</li>
+    <li>Sube lo más alto posible y baja hasta tocar el suelo con el talón: 1 segundo arriba, 1 abajo. Usa el metrónomo de abajo (60 por minuto).</li>
+    <li>Cuenta solo repeticiones con altura completa. Paras cuando no llegas a la misma altura, pierdes el ritmo, doblas la rodilla o te apoyas.</li>
+    <li>Primero la pierna sana, después la lesionada. Porcentaje = lesionada ÷ sana × 100.</li>
+  </ol>
+  <div class="box">
+    <strong>Calculadora</strong>
+    <div class="row">
+      <label for="sana">Sana</label><input id="sana" type="number" inputmode="numeric" min="0" style="width:5.5em;font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)">
+      <label for="les">Lesionada</label><input id="les" type="number" inputmode="numeric" min="0" style="width:5.5em;font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)">
+    </div>
+    <p id="pct" class="muted">Ingresa las dos cifras.</p>
+  </div>
+  <h3>Cuándo retroceder</h3>
+  <ul>
+    <li><b>Un día rojo:</b> la sesión siguiente vuelves a la carga anterior.</li>
+    <li><b>Dos días rojos en la misma semana:</b> repites completa la semana anterior.</li>
+    <li><b>Tres días rojos en una semana, o dos semanas seguidas con días rojos:</b> consulta al kinesiólogo antes de seguir.</li>
+  </ul>
+  <div class="light r"><strong>Detente y consulta si</strong><span>Sientes un golpe o chasquido en la pantorrilla o el talón · de repente no puedes ponerte en puntillas · el dolor empeora día a día por más de una semana · el tendón está hinchado, caliente o rojo · el tobillo se te dobla al caminar.</span></div>
+</section>
+
+<!-- NUTRICIÓN -->
+<section id="v-nutricion" data-view="nutricion" hidden>
+  <h2>Nutrición</h2>
+  <p class="lead">Meta: bajar entre 0,5 y 1 kg por semana, comiendo unas 500 calorías menos de lo que gastas al día.</p>
+  <ol>
+    <li><b>Proteína en cada comida:</b> unos 2 g por kilo de tu peso meta al día (meta 85 kg → unos 170 g). Huevos, pollo, pescado, carne magra, legumbres, yogur, quesillo.</li>
+    <li><b>El plato:</b> mitad verduras, un cuarto proteína, un cuarto carbohidratos. Un poco más de carbohidratos los días de pesas.</li>
+    <li><b>Cero calorías líquidas:</b> bebidas azucaradas, jugos y alcohol.</li>
+    <li><b>Ojo con el pan y la once:</b> una marraqueta tiene cerca de 250 calorías.</li>
+    <li><b>2–3 litros de agua al día</b>, más los días de box.</li>
+    <li><b>Duerme 7–8 horas.</b></li>
+  </ol>
+  <div class="box"><strong>Opcional para el tendón</strong><p>Unos 15 g de gelatina o colágeno con vitamina C, 45–60 min antes de los ejercicios del tendón. Evidencia preliminar: no reemplaza a los ejercicios.</p></div>
+  <div class="box"><strong>Cómo medir</strong><p>Pésate 3 veces por semana en ayunas y mira el promedio semanal. Mide la cintura a la altura del ombligo cada 2 semanas. Si en 3 semanas seguidas el promedio no baja, recorta unas 200 calorías más.</p></div>
+  <p class="muted">Conviene un chequeo médico (presión, glicemia, colesterol) y, si puedes, una consulta con nutricionista.</p>
+</section>
+
+<!-- GLOSARIO -->
+<section id="v-glosario" data-view="glosario" hidden>
+  <h2>Glosario de ejercicios</h2>
+  <p class="muted">Cada nombre abre una demostración en una pestaña nueva.</p>
+  <div id="gloss" class="crit"></div>
+</section>
+
+</main>
+
+<div class="timer" role="region" aria-label="Temporizador de descanso">
+  <div class="in">
+    <span class="clock" id="clock" aria-live="polite">0:00</span>
+    <div class="row">
+      <button type="button" data-sec="60">1 min</button>
+      <button type="button" data-sec="90">1:30</button>
+      <button type="button" data-sec="120">2 min</button>
+      <button type="button" id="stop">Parar</button>
+      <button type="button" id="metro" class="primary">Metrónomo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var L={
+    remoInc:["Remo inclinado con dos mancuernas","https://www.muscleandstrength.com/exercises/bent-over-dumbbell-row.html"],
+    press:["press de hombros sentado","https://www.strengthlog.com/seated-dumbbell-shoulder-press/"],
+    remo1:["remo con mancuerna a una mano","https://www.strengthlog.com/dumbbell-row/"],
+    curl:["curl de bíceps","https://www.strengthlog.com/different-types-of-dumbbell-curls/"],
+    pSent:["puntillas sentado","https://Sports-health.com/video/gentle-stretch-achilles-tendonitis-video"],
+    pPie:["puntillas de pie","https://fitfatherproject.com/?p=20883"],
+    bajada:["bajada lenta en escalón","https://www.central-health.com/video/eccentric-single-calf-raises-off-step"],
+    golpes:["guía de golpes","https://darebee.com/fitness/punching-guide.html"],
+    puente:["Puente de glúteo","https://darebee.com/exercises/bridges.html"],
+    goblet:["sentadilla goblet a cajón","https://www.strengthlog.com/dumbbell-goblet-squat-2/"],
+    rdl:["peso muerto rumano","https://www.strengthlog.com/dumbbell-romanian-deadlift/"],
+    legs:["elevaciones de piernas en el suelo","https://darebee.com/exercises/leg-raises.html"],
+    dead:["dead bug","https://www.strengthlog.com/dead-bugs/"],
+    fondos:["Fondos en silla","https://strengthlog.com/bench-dip"],
+    floor:["press de pecho en el suelo","https://www.strengthlog.com/dumbbell-floor-press/"],
+    lateral:["plancha lateral","https://www.hingehealth.com/gb/en/resources/articles/side-plank/"]
+  };
+  function a(k,txt){var x=L[k];return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+(txt||x[0])+'</a>';}
+  function d(name,url){return '<a href="'+url+'" target="_blank" rel="noopener">'+name+'</a>';}
+  var tendon='Al final, tendón: '+a('pSent')+', '+a('pPie')+' y '+a('bajada')+'.';
+
+  var F1=[
+    ["Lunes","Fuerza tren superior + tendón",a('remoInc')+', flexiones, '+a('press')+', '+a('remo1')+', '+a('curl')+', plancha. '+tendon,d("Beginner Dumbbells","https://darebee.com/workouts/beginner-dumbbells-workout.html")+" (alternativa)"],
+    ["Martes","Box suave + caminata","6 rounds de 2 min al punching ball, 1 min de descanso, pies plantados ("+a('golpes')+"). Después 20–30 min de caminata.",d("Punchy","https://darebee.com/workouts/punchy-workout.html")+" (nivel 1)"],
+    ["Miércoles","Piernas + core + tendón",a('puente')+', '+a('goblet')+', '+a('rdl')+' (pies planos), '+a('legs')+', '+a('dead')+'. '+tendon,"—"],
+    ["Jueves","Caminata + tobillo","30–40 min de caminata a paso firme. Después el workout de tobillo.",d("Ankle Recovery","https://darebee.com/workouts/ankle-recovery-workout.html")],
+    ["Viernes","Fuerza cuerpo completo + tendón",a('fondos')+', '+a('remo1')+', '+a('goblet')+', '+a('floor')+', '+a('curl')+', '+a('lateral')+'. '+tendon,"—"],
+    ["Sábado","Box técnico + caminata","6–8 rounds de 2 min de técnica ("+a('golpes','jab, recto, gancho')+"), pies plantados. Después caminata.",d("Bag Work","https://darebee.com/workouts/bag-work-workout.html")],
+    ["Domingo","Descanso activo","Caminata suave o nada.","—"]
+  ];
+  var F2=[
+    ["Lunes","Ironheart (día del programa) + flexiones y fondos + tendón con peso"],
+    ["Martes","Box 8–10 rounds de 2 min + caminata"],
+    ["Miércoles","Ironheart (día del programa) + tendón con peso"],
+    ["Jueves","Caminata 40–60 min + "+d("Ankle Recovery","https://darebee.com/workouts/ankle-recovery-workout.html")],
+    ["Viernes","Ironheart (día del programa) + flexiones y fondos + tendón con peso"],
+    ["Sábado","Box 8–10 rounds de 2 min + caminata"],
+    ["Domingo","Descanso activo"]
+  ];
+  var F3=[
+    ["Lunes","Power-Up (día del programa) + etapa de impacto de la semana"],
+    ["Martes","Pesas (sesión de Ironheart que prefieras) + tendón"],
+    ["Miércoles","Power-Up + box con rebote suave"],
+    ["Jueves","Caminata o trote según la etapa"],
+    ["Viernes","Pesas + etapa de impacto de la semana + tendón"],
+    ["Sábado","Power-Up + box"],
+    ["Domingo","Descanso activo"]
+  ];
+
+  // Tabla Fase 1
+  document.getElementById('f1rows').innerHTML=F1.map(function(r){
+    return '<tr><td data-l="Día"><b>'+r[0]+'</b></td><td data-l="Sesión">'+r[1]+'</td><td data-l="Qué hacer">'+r[2]+'</td><td data-l="DAREBEE">'+r[3]+'</td></tr>';
+  }).join('');
+
+  // Pesos
+  var W=[
+    ["Press de hombros sentado","2","6 kg","10 kg","3 × 12 completas",'press'],
+    ["Remo inclinado con dos mancuernas","2","8 kg","10 kg","3 × 12 completas",'remoInc'],
+    ["Remo con mancuerna a una mano","1","10 kg","18 kg","3 × 12 por lado",'remo1'],
+    ["Press de pecho en el suelo","2","8 kg","10 kg","3 × 12 completas",'floor'],
+    ["Curl de bíceps","2","6 kg","10 kg","3 × 12 completas",'curl'],
+    ["Sentadilla goblet a cajón","1 al pecho","10 kg","18 kg","3 × 12 completas",'goblet'],
+    ["Peso muerto rumano","2","8 kg","10 kg","3 × 12 completas",'rdl'],
+    ["Puente de glúteo","1 sobre la cadera","Sin peso 2 semanas, luego 10 kg","18 kg","3 × 15 completas",'puente'],
+    ["Fondos en silla","—","Peso corporal; en Fase 2, una de 6 kg sobre los muslos","18 kg","3 × 15 completas",'fondos'],
+    ["Puntillas sentado","1 sobre las rodillas","10 kg","18 kg","3 × 15 completas",'pSent'],
+    ["Puntillas de pie a una pierna","1 en la mano del mismo lado","Sin peso en Fase 1; 4 kg al empezar la Fase 2","18 kg","3 × 15 por pierna",'pPie'],
+    ["Bajada lenta en escalón","1 en la mano del mismo lado","Sin peso en Fase 1; 4–6 kg en Fase 2","18 kg","3 × 15 con dolor de 2 o menos",'bajada']
+  ];
+  document.getElementById('wrows').innerHTML=W.map(function(r){
+    return '<tr><td data-l="Ejercicio">'+a(r[5],r[0])+'</td><td data-l="Mancuernas">'+r[1]+'</td><td data-l="Peso inicial">'+r[2]+'</td><td data-l="Techo con tu equipo" class="num">'+r[3]+'</td><td data-l="Subes 2 kg cuando">'+r[4]+'</td></tr>';
+  }).join('');
+
+  // Glosario
+  var G=[
+    ["Tendón de Aquiles",[
+      ['pSent',"Sentado, pies en el suelo: levantas los talones y bajas lento. Para cargarlo, mancuernas sobre las rodillas."],
+      ['pPie',"De pie en una pierna, una mano en la pared solo para el equilibrio. Subes lo más alto posible y bajas lento."],
+      ['bajada',"En el borde de un escalón, subes con las dos piernas, levantas la sana y bajas en 3 segundos con la lesionada hasta que el talón quede bajo el escalón."]]],
+    ["Tren superior",[
+      ['remoInc',"De pie, rodillas un poco dobladas, tronco inclinado con la espalda recta. Tiras de ambas mancuernas hacia la cintura llevando los codos atrás."],
+      ['remo1',"Mano y rodilla en una silla firme, espalda recta. Tiras la mancuerna hacia la cadera con el codo hacia atrás."],
+      ['press',"Sentado, espalda recta, mancuernas a la altura de los hombros. Empujas hacia arriba hasta estirar los brazos."],
+      ['floor',"Acostado en el suelo, rodillas dobladas. Empujas las mancuernas desde el pecho hacia arriba."],
+      ['curl',"De pie, palmas adelante, codos pegados al cuerpo. Subes doblando solo el codo y bajas lento."],
+      ['fondos',"De espaldas a una silla firme contra la pared, manos en el borde. Bajas doblando los codos hasta unos 90° y subes. Más fácil con rodillas dobladas."]]],
+    ["Piernas y glúteos",[
+      ['puente',"Acostado, rodillas dobladas, pies planos. Subes la cadera apretando glúteos y bajas lento."],
+      ['goblet',"Una mancuerna vertical pegada al pecho. Te sientas suave en una silla a la altura de la rodilla y te paras."],
+      ['rdl',"De pie, rodillas apenas dobladas. Echas la cadera atrás bajando las mancuernas pegadas a las piernas, espalda recta, y vuelves apretando glúteos."]]],
+    ["Core",[
+      ['legs',"Acostado, manos bajo los glúteos. Subes las piernas juntas hasta la vertical y bajas lento sin despegar la zona lumbar."],
+      ['dead',"Acostado, brazos al techo, rodillas dobladas en el aire. Bajas un brazo y la pierna contraria sin despegar la zona lumbar."],
+      ['lateral',"De costado, apoyado en antebrazo y pies, cuerpo recto y cadera arriba."]]],
+    ["Cardio y box",[
+      [null,"Un jumping jack sin salto: abres un pie hacia el lado mientras subes los brazos, vuelves y abres el otro.","Step jacks","https://www.darebee.com/challenges/easy-cardio-challenge.html"],
+      ['golpes',"Jab: golpe rápido con la mano de adelante. Recto: con la de atrás, girando cadera y pie. Gancho: en arco con el codo doblado.","Jab, recto y gancho"]]]
+  ];
+  document.getElementById('gloss').innerHTML=G.map(function(g){
+    return '<div class="box"><strong>'+g[0]+'</strong><div class="tbl"><table><tbody>'+g[1].map(function(e){
+      var name=e[0]?a(e[0],e[2]||null):d(e[2],e[3]);
+      if(e[0]&&!e[2]){var t=L[e[0]][0];name=a(e[0],t.charAt(0).toUpperCase()+t.slice(1));}
+      return '<tr><td style="width:34%"><b>'+name+'</b></td><td>'+e[1]+'</td></tr>';
+    }).join('')+'</tbody></table></div></div>';
+  }).join('');
+
+  // Almacenamiento seguro
+  function get(k,def){try{var v=localStorage.getItem(k);return v===null?def:JSON.parse(v);}catch(e){return def;}}
+  function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+  // Mi semana
+  var phase=get('pr-phase',1), done=get('pr-done',{});
+  var hints={1:"Fase 1: fuerza sin impacto. Detalle en la pestaña Fase 1.",2:"Fase 2: Ironheart + box. Detalle en la pestaña Fase 2.",3:"Fase 3: Power-Up + impacto gradual. Detalle en la pestaña Fase 3."};
+  var todayIdx=(new Date().getDay()+6)%7;
+  function renderWeek(){
+    var rows=phase===1?F1.map(function(r){return [r[0],r[1]+' — '+r[2]];}):(phase===2?F2:F3);
+    document.getElementById('phaseHint').textContent=hints[phase];
+    document.querySelectorAll('[data-phase]').forEach(function(b){b.className=(+b.dataset.phase===phase)?'primary':'';});
+    document.getElementById('week').innerHTML=rows.map(function(r,i){
+      var id='d'+phase+'-'+i, on=!!done[id];
+      return '<label class="day'+(on?' done':'')+(i===todayIdx?' today':'')+'" for="'+id+'"><input type="checkbox" id="'+id+'"'+(on?' checked':'')+'><span class="d">'+r[0]+(i===todayIdx?' · hoy':'')+'</span><span class="t">'+r[1]+'</span></label>';
+    }).join('');
+    document.querySelectorAll('#week input').forEach(function(c){c.addEventListener('change',function(){done[c.id]=c.checked;set('pr-done',done);c.parentNode.classList.toggle('done',c.checked);});});
+  }
+  document.querySelectorAll('[data-phase]').forEach(function(b){b.addEventListener('click',function(){phase=+b.dataset.phase;set('pr-phase',phase);renderWeek();});});
+  document.getElementById('resetWeek').addEventListener('click',function(){done={};set('pr-done',done);renderWeek();});
+  renderWeek();
+
+  // Calculadora
+  function calc(){var s=+document.getElementById('sana').value,l=+document.getElementById('les').value,el=document.getElementById('pct');
+    if(!s||!document.getElementById('les').value){el.textContent='Ingresa las dos cifras.';return;}
+    var p=Math.round(l/s*100), msg=p+'% de la pierna sana. ';
+    if(l>=25||p>=90)msg+='Cumple el criterio de puntillas para pasar a la Fase 3.';
+    else if(l>=15||p>=60)msg+='Cumple el criterio de puntillas para pasar a la Fase 2.';
+    else msg+='Aún no cumple el criterio de la Fase 1. Sigue con los ejercicios del tendón.';
+    el.textContent=msg;}
+  document.getElementById('sana').addEventListener('input',calc);document.getElementById('les').addEventListener('input',calc);
+
+  // Navegación por hash
+  var views=['hoy','reglas','fase1','fase2','fase3','pesos','criterios','nutricion','glosario'];
+  function show(){var h=(location.hash||'#hoy').slice(1);if(views.indexOf(h)<0)h='hoy';
+    document.querySelectorAll('[data-view]').forEach(function(s){s.hidden=s.dataset.view!==h;});
+    document.querySelectorAll('nav.tabs a').forEach(function(l){if(l.getAttribute('href')==='#'+h)l.setAttribute('aria-current','page');else l.removeAttribute('aria-current');});
+    window.scrollTo(0,0);}
+  window.addEventListener('hashchange',show);show();
+
+  // Temporizador y metrónomo
+  var ctx=null,end=0,tick=null,metroOn=false,metroInt=null,clock=document.getElementById('clock');
+  function beep(f,dur){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();var o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=f;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(.2,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);o.start();o.stop(ctx.currentTime+dur);}catch(e){}}
+  function fmt(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
+  function stopT(){clearInterval(tick);tick=null;}
+  document.querySelectorAll('[data-sec]').forEach(function(b){b.addEventListener('click',function(){
+    beep(660,.05);stopT();clock.classList.remove('end');end=Date.now()+(+b.dataset.sec)*1000;
+    tick=setInterval(function(){var left=Math.max(0,Math.round((end-Date.now())/1000));clock.textContent=fmt(left);
+      if(left===0){stopT();clock.textContent='¡Serie!';clock.classList.add('end');beep(880,.4);setTimeout(function(){beep(880,.4);},500);}},250);
+    clock.textContent=fmt(+b.dataset.sec);});});
+  document.getElementById('stop').addEventListener('click',function(){stopT();clock.textContent='0:00';clock.classList.remove('end');});
+  var mb=document.getElementById('metro'),up=true;
+  mb.addEventListener('click',function(){metroOn=!metroOn;mb.textContent=metroOn?'Parar metrónomo':'Metrónomo';
+    if(metroOn){up=true;metroInt=setInterval(function(){beep(up?990:550,.07);up=!up;},1000);}else clearInterval(metroInt);});
+})();
+</script>
