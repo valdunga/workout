@@ -172,7 +172,7 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
     <button type="button" data-phase="3">Fase 3</button>
   </div>
   <p class="muted" id="phaseHint"></p>
-  <div class="note"><b>Cómo leer las dosis:</b> “3 × 8–12 · 90 s” = 3 series de 8 a 12 repeticiones, con 90 s de descanso entre series. “Máximo − 2” = paras 2 repeticiones antes de no poder más. Termina cada serie con 2 repeticiones en el estanque. Al lado de cada ejercicio con mancuerna ves los kilos que lleva <b>una</b> mancuerna. Se ajustan solos con lo que registras: “↑” significa que esa sesión subes 2 kg. Si el día amanece amarillo, cambia el bloque del tendón por 5 × 45 s aguantando a media puntilla con las dos piernas.</div>
+  <div class="note"><b>Cómo leer las dosis:</b> “3 × 8–12 · 90 s” = 3 series de 8 a 12 repeticiones, con 90 s de descanso entre series. “Máximo − 2” = paras 2 repeticiones antes de no poder más. Termina cada serie con 2 repeticiones en el estanque. Al lado de cada ejercicio con mancuerna ves los <b>kilos de discos</b> que van en una mancuerna, sin contar la barra. Se ajustan solos con lo que registras: “↑” significa que esa sesión sumas 2 kg de discos (1 kg por lado). Si el día amanece amarillo, cambia el bloque del tendón por 5 × 45 s aguantando a media puntilla con las dos piernas.</div>
   <div class="week" id="week"></div>
   <div class="row"><button type="button" id="resetWeek">Empezar semana nueva</button><span class="muted" style="font-size:13px" id="dbNote"></span></div>
   <div class="box">
@@ -227,7 +227,7 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
 <section id="v-fase1" data-view="fase1" hidden>
   <span class="chip">Semanas 1–4</span>
   <h2>Fase 1: fuerza sin impacto</h2>
-  <p>Objetivo: entrenar 5 días por semana sin que el tendón se queje. Haz 3 series de 8–12 repeticiones dejando 2 “en el estanque”. Los kilos de cada ejercicio están en <a href="#pesos">Pesos</a>.</p>
+  <p>Objetivo: entrenar 5 días por semana sin que el tendón se queje. Haz 3 series de 8–12 repeticiones dejando 2 “en el estanque”. Los kilos de discos de cada ejercicio aparecen al lado de su nombre.</p>
   <div class="tbl"><table class="cards">
     <thead><tr><th>Día</th><th>Sesión</th><th>Qué hacer</th><th>DAREBEE</th></tr></thead>
     <tbody id="f1rows"></tbody>
@@ -278,23 +278,23 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
 <!-- PESOS -->
 <section id="v-pesos" data-view="pesos" hidden>
   <h2>Pesos de las mancuernas</h2>
-  <p class="lead">El peso correcto es el que te deja terminar cada serie con 2 repeticiones en el estanque. Los kilos son el peso total de <b>cada</b> mancuerna, con la barra incluida.</p>
-  <div class="note"><b>Tu equipo:</b> 8 discos de 1 kg y 4 de 2 kg (16 kg en total) y barras de unos 2 kg. Pésalas: si pesan distinto, todo se corre en esa diferencia. Mismo disco a cada lado y seguros apretados. Los pesos van de 2 en 2 kg: con las dos mancuernas cargadas el máximo es <b>10 kg cada una</b>; con una sola, <b>18 kg</b>.</div>
+  <p class="lead">El peso correcto es el que te deja terminar cada serie con 2 repeticiones en el estanque. Todos los kilos de la app son <b>de discos</b> en una mancuerna, sin contar la barra. El peso total es discos + 1 kg.</p>
+  <div class="note"><b>Tu equipo:</b> 2 barras de 1 kg, 4 discos de 2 kg y 8 de 1 kg (16 kg de discos). Mismo disco a cada lado y seguros apretados. Los discos van de 2 en 2 kg por mancuerna: con las dos mancuernas cargadas, el máximo es <b>8 kg de discos en cada una</b>; con una sola, <b>16 kg de discos</b>.</div>
   <div class="tbl"><table>
-    <thead><tr><th>Mancuerna</th><th>Discos por lado</th><th>Para</th></tr></thead>
+    <thead><tr><th>Discos en la mancuerna</th><th>Discos por lado</th><th>Peso total</th><th>Para</th></tr></thead>
     <tbody>
-      <tr><td class="num">4 kg</td><td>1 × 1 kg</td><td>Par o una sola</td></tr>
-      <tr><td class="num">6 kg</td><td>1 × 2 kg (o 2 × 1 kg)</td><td>Par o una sola</td></tr>
-      <tr><td class="num">8 kg</td><td>1 × 2 kg + 1 × 1 kg</td><td>Par o una sola</td></tr>
-      <tr><td class="num">10 kg</td><td>1 × 2 kg + 2 × 1 kg</td><td>Par (máximo con las dos)</td></tr>
-      <tr><td class="num">12 kg</td><td>2 × 2 kg + 1 × 1 kg</td><td>Una sola</td></tr>
-      <tr><td class="num">14 kg</td><td>2 × 2 kg + 2 × 1 kg</td><td>Una sola</td></tr>
-      <tr><td class="num">16 kg</td><td>2 × 2 kg + 3 × 1 kg</td><td>Una sola</td></tr>
-      <tr><td class="num">18 kg</td><td>2 × 2 kg + 4 × 1 kg</td><td>Una sola (todos los discos)</td></tr>
+      <tr><td class="num">2 kg</td><td>1 × 1 kg</td><td class="num">3 kg</td><td>Par o una sola</td></tr>
+      <tr><td class="num">4 kg</td><td>1 × 2 kg (o 2 × 1 kg)</td><td class="num">5 kg</td><td>Par o una sola</td></tr>
+      <tr><td class="num">6 kg</td><td>1 × 2 kg + 1 × 1 kg</td><td class="num">7 kg</td><td>Par o una sola</td></tr>
+      <tr><td class="num">8 kg</td><td>1 × 2 kg + 2 × 1 kg</td><td class="num">9 kg</td><td>Par (máximo con las dos)</td></tr>
+      <tr><td class="num">10 kg</td><td>2 × 2 kg + 1 × 1 kg</td><td class="num">11 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">12 kg</td><td>2 × 2 kg + 2 × 1 kg</td><td class="num">13 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">14 kg</td><td>2 × 2 kg + 3 × 1 kg</td><td class="num">15 kg</td><td>Una sola</td></tr>
+      <tr><td class="num">16 kg</td><td>2 × 2 kg + 4 × 1 kg</td><td class="num">17 kg</td><td>Una sola (todos los discos)</td></tr>
     </tbody>
   </table></div>
   <div class="tbl"><table class="cards">
-    <thead><tr><th>Ejercicio</th><th>Mancuernas</th><th>Peso inicial (cada una)</th><th>Techo</th><th>Subes 2 kg cuando…</th></tr></thead>
+    <thead><tr><th>Ejercicio</th><th>Mancuernas</th><th>Discos al inicio (cada una)</th><th>Techo de discos</th><th>Subes 2 kg cuando…</th></tr></thead>
     <tbody id="wrows"></tbody>
   </table></div>
   <div class="box">
@@ -306,10 +306,10 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
     <p>Trabaja entre 8 y 12 repeticiones e intenta sumar una cada sesión. Cuando hagas 3 × 12 con buena técnica y 2 en el estanque, sube 2 kg y vuelve a 8–10.</p>
   </div>
   <div class="box">
-    <strong>Cuando llegues al techo de 10 kg con dos mancuernas</strong>
+    <strong>Cuando llegues al techo de 8 kg de discos con dos mancuernas</strong>
     <p>Lo más probable en peso muerto rumano, remo inclinado y press de pecho. Sigue progresando sin más peso:</p>
     <ul>
-      <li>Pásate a la versión a un brazo o a una pierna con una sola mancuerna pesada (hasta 18 kg): remo a una mano, peso muerto rumano a una pierna, press de pecho a un brazo.</li>
+      <li>Pásate a la versión a un brazo o a una pierna con una sola mancuerna pesada (hasta 16 kg de discos): remo a una mano, peso muerto rumano a una pierna, press de pecho a un brazo.</li>
       <li>Baja en 3 segundos y pausa 1 segundo abajo.</li>
       <li>Sube hasta 15–20 repeticiones por serie.</li>
     </ul>
@@ -336,7 +336,7 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
       <li>Las últimas 2 semanas, sin días rojos.</li></ol></div>
     <div class="box"><strong>Fase 2 → Fase 3</strong><ol>
       <li>Prueba de puntillas: 25 o más con la lesionada, o al menos el 90% de la sana, con la misma altura.</li>
-      <li>Bajada lenta en escalón: 3 × 15 con 6 kg y dolor de 2 o menos.</li>
+      <li>Bajada lenta en escalón: 3 × 15 con 4 kg de discos y dolor de 2 o menos.</li>
       <li>Caminas 60 min y la mañana siguiente es verde.</li>
       <li>20 s parado en la pierna lesionada con ojos cerrados, igual que con la sana.</li>
       <li>2 × 10 saltitos suaves con los dos pies, dolor de 2 o menos y mañana siguiente verde.</li></ol></div>
@@ -471,8 +471,8 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
     {d:"Sábado",s:"Power-Up + box",min:"55 min",ex:[calent,[PU+' (día que toque)','Como indica la tarjeta'],['Punching ball','8 rounds de 2 min · 1 min de descanso']]},
     {d:"Domingo",s:"Descanso activo",min:"",ex:[['Caminata suave','Opcional']]}
   ];
-  // Kilos por mancuerna: [inicio, reps meta para subir, 1 = se usa con dos mancuernas (techo 10 kg)]
-  var KG={press:[6,12,1],remoInc:[8,12,1],remo1:[10,12,0],floor:[8,12,1],curl:[6,12,1],goblet:[10,12,0],rdl:[8,12,1],puente:[10,15,0],fondos:[6,15,0],pSent:[10,15,0],pPie:[4,15,0],bajada:[4,15,0]};
+  // Kilos de DISCOS por mancuerna (barra de 1 kg aparte): [inicio, reps meta para subir, 1 = se usa con dos mancuernas (techo 8 kg)]
+  var KG={press:[4,12,1],remoInc:[6,12,1],remo1:[8,12,0],floor:[6,12,1],curl:[4,12,1],goblet:[8,12,0],rdl:[6,12,1],puente:[8,15,0],fondos:[4,15,0],pSent:[8,15,0],pPie:[2,15,0],bajada:[2,15,0]};
   var NOKG1={fondos:1,pPie:1,bajada:1};
   function kgFor(k,ph){
     var K=KG[k]; if(!K)return null;
@@ -480,11 +480,11 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
     if(ph===1&&NOKG1[k])return {kg:0};
     for(var i=0;i<ds.length;i++){var x=Lg[ds[i]].ej&&Lg[ds[i]].ej[k];if(x&&x.kg!=null&&x.kg!==''){last={kg:+x.kg,reps:x.reps};break;}}
     if(!last){
-      if(k==='puente'&&ph===1){var first=ds[ds.length-1];return {kg:(first&&(new Date()-parseYmd(first))/864e5>=14)?10:0};}
-      if(k==='bajada'&&ph===3)return {kg:6};
+      if(k==='puente'&&ph===1){var first=ds[ds.length-1];return {kg:(first&&(new Date()-parseYmd(first))/864e5>=14)?8:0};}
+      if(k==='bajada'&&ph===3)return {kg:4};
       return {kg:K[0]};
     }
-    var cap=K[2]?10:18, reps=String(last.reps||'').split(/[^0-9]+/).filter(Boolean).map(Number);
+    var cap=K[2]?8:16, reps=String(last.reps||'').split(/[^0-9]+/).filter(Boolean).map(Number);
     var bad=ds.some(function(d){return (new Date()-parseYmd(d))/864e5<7&&/^(a|r)$/.test(dayColor(Lg[d])||'');});
     if(reps.length>=3&&reps.every(function(r){return r>=K[1];})&&!bad){
       if(last.kg+2>cap)return {kg:last.kg,tag:'techo'};
@@ -494,7 +494,7 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
   }
   function kgPill(k,ph){var r=kgFor(k,ph);if(!r)return '';
     if(!r.kg)return '<span class="kg none">Sin peso</span>';
-    return '<span class="kg'+(r.tag==='sube'?' up':'')+'" title="Kilos de una mancuerna">'+(r.tag==='sube'?'↑ ':'')+r.kg+' kg'+(r.tag==='techo'?' · techo':'')+'</span>';}
+    return '<span class="kg'+(r.tag==='sube'?' up':'')+'" title="Kilos de discos en una mancuerna, sin la barra">'+(r.tag==='sube'?'↑ ':'')+r.kg+' kg de discos'+(r.tag==='techo'?' · techo':'')+'</span>';}
   function exList(ex,ph){ph=ph||1;return '<ul class="ex">'+ex.map(function(e){
     var m=/data-k="(\w+)"/.exec(e[0]), k=m?m[1]:(e[0].indexOf('ironheart-program')>=0?'curl':null);
     return '<li><span class="n">'+e[0]+(k?kgPill(k,ph):'')+'</span><span class="q">'+e[1]+'</span></li>';}).join('')+'</ul>';}
@@ -507,18 +507,18 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
 
   // Pesos
   var W=[
-    ["Press de hombros sentado","2","6 kg","10 kg","3 × 12 completas",'press'],
-    ["Remo inclinado con dos mancuernas","2","8 kg","10 kg","3 × 12 completas",'remoInc'],
-    ["Remo con mancuerna a una mano","1","10 kg","18 kg","3 × 12 por lado",'remo1'],
-    ["Press de pecho en el suelo","2","8 kg","10 kg","3 × 12 completas",'floor'],
-    ["Curl de bíceps","2","6 kg","10 kg","3 × 12 completas",'curl'],
-    ["Sentadilla goblet a cajón","1 al pecho","10 kg","18 kg","3 × 12 completas",'goblet'],
-    ["Peso muerto rumano","2","8 kg","10 kg","3 × 12 completas",'rdl'],
-    ["Puente de glúteo","1 sobre la cadera","Sin peso 2 semanas, luego 10 kg","18 kg","3 × 15 completas",'puente'],
-    ["Fondos en silla","—","Peso corporal; en Fase 2, una de 6 kg sobre los muslos","18 kg","3 × 15 completas",'fondos'],
-    ["Puntillas sentado","1 sobre las rodillas","10 kg","18 kg","3 × 15 completas",'pSent'],
-    ["Puntillas de pie a una pierna","1 en la mano del mismo lado","Sin peso en Fase 1; 4 kg al empezar la Fase 2","18 kg","3 × 15 por pierna",'pPie'],
-    ["Bajada lenta en escalón","1 en la mano del mismo lado","Sin peso en Fase 1; 4–6 kg en Fase 2","18 kg","3 × 15 con dolor de 2 o menos",'bajada']
+    ["Press de hombros sentado","2","4 kg","8 kg","3 × 12 completas",'press'],
+    ["Remo inclinado con dos mancuernas","2","6 kg","8 kg","3 × 12 completas",'remoInc'],
+    ["Remo con mancuerna a una mano","1","8 kg","16 kg","3 × 12 por lado",'remo1'],
+    ["Press de pecho en el suelo","2","6 kg","8 kg","3 × 12 completas",'floor'],
+    ["Curl de bíceps","2","4 kg","8 kg","3 × 12 completas",'curl'],
+    ["Sentadilla goblet a cajón","1 al pecho","8 kg","16 kg","3 × 12 completas",'goblet'],
+    ["Peso muerto rumano","2","6 kg","8 kg","3 × 12 completas",'rdl'],
+    ["Puente de glúteo","1 sobre la cadera","Sin peso 2 semanas, luego 8 kg","16 kg","3 × 15 completas",'puente'],
+    ["Fondos en silla","—","Peso corporal; en Fase 2, una mancuerna con 4 kg sobre los muslos","16 kg","3 × 15 completas",'fondos'],
+    ["Puntillas sentado","1 sobre las rodillas","8 kg","16 kg","3 × 15 completas",'pSent'],
+    ["Puntillas de pie a una pierna","1 en la mano del mismo lado","Sin peso en Fase 1; 2 kg al empezar la Fase 2","16 kg","3 × 15 por pierna",'pPie'],
+    ["Bajada lenta en escalón","1 en la mano del mismo lado","Sin peso en Fase 1; 2–4 kg en Fase 2","16 kg","3 × 15 con dolor de 2 o menos",'bajada']
   ];
   document.getElementById('wrows').innerHTML=W.map(function(r){
     return '<tr><td data-l="Ejercicio">'+a(r[5],r[0])+'</td><td data-l="Mancuernas">'+r[1]+'</td><td data-l="Peso inicial">'+r[2]+'</td><td data-l="Techo con tu equipo" class="num">'+r[3]+'</td><td data-l="Subes 2 kg cuando">'+r[4]+'</td></tr>';
@@ -627,9 +627,9 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
       if(k==='box'){html+='<div class="frow"><label for="x-box">Box: rounds de 2 min</label><input id="x-box" type="number" inputmode="numeric" min="0" max="20" value="'+esc(e.box)+'"></div>';return;}
       if(k==='walk'){html+='<div class="frow"><label for="x-walk">Caminata o trote (min)</label><input id="x-walk" type="number" inputmode="numeric" min="0" max="240" value="'+esc(e.caminata)+'"></div>';return;}
       var K=KEYS[k], cur=ej[k]||{}, prev=lastFor(k,date);
-      var hint=prev?'Última vez: '+(prev.kg?prev.kg+' kg · ':'')+(prev.reps||'')+' ('+fmtDate(prev.date)+')':'Primera vez: usa el peso de la pestaña Pesos';
+      var hint=prev?'Última vez: '+(prev.kg?prev.kg+' kg de discos · ':'')+(prev.reps||'')+' ('+fmtDate(prev.date)+')':'Primera vez: ya viene el peso sugerido';
       html+='<div class="frow ex"><span class="lbl">'+K[0]+'<small>'+esc(hint)+'</small></span>'+
-        (K[1]==='kg'?'<label class="mini">kg<input data-k="'+k+'" data-f="kg" type="number" inputmode="decimal" step="2" min="0" max="18" value="'+esc(cur.kg!=null?cur.kg:((kgFor(k,f)||{}).kg||''))+'"></label>':'')+
+        (K[1]==='kg'?'<label class="mini">kg discos<input data-k="'+k+'" data-f="kg" type="number" inputmode="decimal" step="2" min="0" max="16" value="'+esc(cur.kg!=null?cur.kg:((kgFor(k,f)||{}).kg||''))+'"></label>':'')+
         '<label class="mini wide">Reps por serie<input data-k="'+k+'" data-f="reps" type="text" inputmode="numeric" placeholder="12, 11, 10" value="'+esc(cur.reps||'')+'"></label></div>';
     });
     if(!keys.length)html='<p class="muted">Día de Power-Up e impacto: anota en notas cómo te fue con la etapa de la semana.</p>';
@@ -718,9 +718,9 @@ ul.hist .dot{margin-right:8px;vertical-align:middle}
     html+='<h3>Prueba de puntillas</h3>'+(td.length?'<p class="legend"><span class="sw s2"></span>Sana <span class="sw s1"></span>Lesionada</p>':'')+chart([{name:'',cls:'s2',pts:td.map(function(d){return [d,tests[d].sana];})},{name:'',cls:'s1',pts:td.map(function(d){return [d,tests[d].lesionada];})}],{min:0,label:'Prueba de puntillas, repeticiones por pierna',empty:'Guarda tu primera prueba en la pestaña Criterios.'});
     var rows='';Object.keys(KEYS).forEach(function(k){var K=KEYS[k],p=lastFor(k);if(!p)return;
       var reps=String(p.reps||'').split(/[^0-9]+/).filter(Boolean).map(Number), sug='Mantén';
-      if(K[1]==='kg'&&K[2]&&reps.length>=3&&reps.every(function(r){return r>=K[2];})){var nk=(p.kg||0)+2;sug=(K[3]&&nk>10)?'Techo de 10 kg: pasa a la versión a un brazo o una pierna':(nk>18?'Techo de 18 kg: baja más lento o suma repeticiones':'Sube a '+nk+' kg');}
+      if(K[1]==='kg'&&K[2]&&reps.length>=3&&reps.every(function(r){return r>=K[2];})){var nk=(p.kg||0)+2;sug=(K[3]&&nk>8)?'Techo de 8 kg de discos: pasa a la versión a un brazo o una pierna':(nk>16?'Techo de 16 kg de discos: baja más lento o suma repeticiones':'Sube a '+nk+' kg de discos');}
       else if(K[1]==='reps'&&K[2]&&reps.length>=3&&reps.every(function(r){return r>=K[2];}))sug='Hazlo más difícil (pies elevados o con mancuerna)';
-      rows+='<tr><td data-l="Ejercicio">'+K[0]+'</td><td data-l="Última vez" class="num">'+(p.kg!=null?p.kg+' kg · ':'')+esc(p.reps)+'</td><td data-l="Fecha">'+fmtDate(p.date)+'</td><td data-l="Próxima sesión"><b>'+sug+'</b></td></tr>';});
+      rows+='<tr><td data-l="Ejercicio">'+K[0]+'</td><td data-l="Última vez" class="num">'+(p.kg!=null?p.kg+' kg discos · ':'')+esc(p.reps)+'</td><td data-l="Fecha">'+fmtDate(p.date)+'</td><td data-l="Próxima sesión"><b>'+sug+'</b></td></tr>';});
     html+='<h3>Tus pesos</h3>'+(rows?'<div class="tbl"><table class="cards"><thead><tr><th>Ejercicio</th><th>Última vez</th><th>Fecha</th><th>Próxima sesión</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<p class="muted">Registra tu primera sesión de fuerza para ver aquí cuándo subir de peso.</p>');
     var hist=ds.slice(-10).reverse().map(function(d){var e=logs[d],c=dayColor(e);return '<li><span class="dot '+(c||'none')+'"></span><b>'+fmtDate(d)+'</b> · Fase '+(e.fase||'?')+(e.hecho?' · hecho':'')+(e.manana!=null?' · mañana '+e.manana:'')+(e.dolor!=null?' · dolor '+e.dolor:'')+(e.peso!=null?' · '+e.peso+' kg':'')+(e.notas?'<br><span class="muted">'+esc(e.notas)+'</span>':'')+'</li>';}).join('');
     html+='<h3>Últimos registros</h3>'+(hist?'<ul class="hist">'+hist+'</ul>':'<p class="muted">Todavía no hay registros. Empieza en la pestaña Registrar.</p>');
